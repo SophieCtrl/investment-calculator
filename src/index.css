@@ -26,15 +26,19 @@ header {
 #user-input {
   padding: 1rem;
   max-width: 30rem;
-  margin: 2rem auto;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #307e6c, #2b996d);
+  margin: 0.2rem auto;
 }
 
 .input-group {
   display: flex;
   justify-content: space-evenly;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+  padding: 0.6rem 0;
+}
+
+.input-group > * {
+  flex-basis: 40%;
 }
 
 #user-input label {
