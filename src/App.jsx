@@ -1,16 +1,12 @@
-// components: header, user input, table
-// store user input
-// derive investment results using provided utility functions
-// display results in an HTML table
-// display info message if input is invalid
 import { useState } from "react";
 import UserInput from "./components/UserInput";
+import ResultsTable from "./components/ResultsTable";
 
 const INITIAL_INPUT = {
-  "Initial Investment": 15000,
-  "Annual Investment": 900,
-  "Expected Return": 5.5,
-  "Investment Duration": 10,
+  initialInvestment: 15000,
+  annualInvestment: 900,
+  expectedReturn: 5.6,
+  duration: 10,
 };
 const INPUT_LABELS = [
   "Initial Investment",
@@ -34,17 +30,22 @@ function App() {
   return (
     <>
       <div className="input-group">
-        {INPUT_LABELS.map((label) => {
+        {INPUT_LABELS.map((label, index) => {
           return (
             <UserInput
-              key={label}
               labelName={label}
-              initialValue={INITIAL_INPUT[label]}
+              labelKey={Object.keys(INITIAL_INPUT)[index]}
+              initialValue={INITIAL_INPUT[Object.keys(INITIAL_INPUT)[index]]}
               onInputChange={handleInput}
+              key={label}
             />
           );
         })}
       </div>
+      <ResultsTable userInput={userInput} />
+      {userInput.duration < 1 && (
+        <p className="center">Please enter a duration.</p>
+      )}
     </>
   );
 }

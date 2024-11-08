@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-const UserInput = ({ labelName, initialValue, onInputChange }) => {
+const UserInput = ({ labelName, labelKey, initialValue, onInputChange }) => {
   const [inputValue, setInputValue] = useState(initialValue);
 
   const handleInput = (event) => {
+    event.target.value = event.target.value.replace(/^0+/, "");
     const newValue = event.target.value;
-    setInputValue(newValue);
-    onInputChange(labelName, newValue);
+
+    setInputValue(Number(newValue));
+    onInputChange(labelKey, Number(newValue));
   };
 
   return (
