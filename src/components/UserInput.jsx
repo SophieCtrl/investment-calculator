@@ -7,8 +7,8 @@ const UserInput = ({ labelName, labelKey, initialValue, onInputChange }) => {
     event.target.value = event.target.value.replace(/^0+/, "");
     const newValue = event.target.value;
 
-    setInputValue(Number(newValue));
-    onInputChange(labelKey, Number(newValue));
+    setInputValue(newValue);
+    onInputChange(labelKey, newValue);
   };
 
   return (

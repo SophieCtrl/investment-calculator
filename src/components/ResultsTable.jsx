@@ -4,7 +4,6 @@ const ResultsTable = ({ userInput }) => {
   const annualData = calculateInvestmentResults(userInput);
   let totalInterest = null;
   let investedCapital = userInput.initialInvestment;
-  let investmentValue = null;
 
   return (
     <table id="result">
@@ -21,11 +20,10 @@ const ResultsTable = ({ userInput }) => {
         {annualData.map((data) => {
           totalInterest += data.interest;
           investedCapital += data.annualInvestment;
-          investmentValue = investedCapital + totalInterest;
           return (
             <tr key={data.year}>
               <td>{data.year}</td>
-              <td>{formatter.format(investmentValue)}</td>
+              <td>{formatter.format(data.valueEndOfYear)}</td>
               <td>{formatter.format(data.interest)}</td>
               <td>{formatter.format(totalInterest)}</td>
               <td>{formatter.format(investedCapital)}</td>

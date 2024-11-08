@@ -17,12 +17,13 @@ const INPUT_LABELS = [
 
 function App() {
   const [userInput, setUserInput] = useState(INITIAL_INPUT);
+  const inputIsValid = userInput.duration >= 1;
 
   const handleInput = (label, newValue) => {
     setUserInput((curUserInput) => {
       return {
         ...curUserInput,
-        [label]: newValue,
+        [label]: +newValue,
       };
     });
   };
@@ -42,10 +43,8 @@ function App() {
           );
         })}
       </div>
-      <ResultsTable userInput={userInput} />
-      {userInput.duration < 1 && (
-        <p className="center">Please enter a duration.</p>
-      )}
+      {inputIsValid && <ResultsTable userInput={userInput} />}
+      {!inputIsValid && <p className="center">Please enter a duration.</p>}
     </>
   );
 }
